@@ -1,11 +1,11 @@
-# ReactJS Chrome Extension
+npm install --global yarn
 
-## React 18 and TailwindCSS Supported
+yarn add webpack webpack-cli --dev
 
-- [x] Webpack Compatible
-- [x] TailwindCSS 3.0 Compatible
+yarn add typescript
 
-Subscribe to my youtube channel
-https://bit.ly/manshu
+yarn add ts-loader
 
-<a href="https://www.buymeacoffee.com/batraio" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+yarn add -D copy-webpack-plugin
+
+yarn run watch
