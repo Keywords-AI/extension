@@ -15,7 +15,8 @@
         "tabs",
         "bookmarks",
         "storage",
-        "identity"
+        "identity",
+        "activeTab"
     ],
     "icons": {
         "16" : "icon.png",
@@ -29,7 +30,8 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["contentScript.js"]
+            "js": ["contentScript.js"],
+            "run_at": "document_idle"
         }
     ]
 }

@@ -21,3 +21,10 @@ window.onload = (event) => {
       replaceTextInNode(document.body);
 };
 
+document.addEventListener('click', (event: MouseEvent) => {
+  // Check if the target is an HTMLElement, as it might be a different kind of event target
+  if (event.target instanceof HTMLElement) {
+    const className = event.target.className;
+    console.log('Clicked element class name:', className);
+  }
+});
