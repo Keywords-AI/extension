@@ -8,3 +8,11 @@ export default function ExtensionFAB() {
     </div>
   )
 }
+
+export function ExtensionFAB2() {
+  return (
+    <div>
+      <h1 className="text-4xl text-green-500">Keywords2</h1>
+    </div>
+  )
+}

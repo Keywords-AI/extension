@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import '../assets/tailwind.css'
-import ExtensionFAB from "./ExtensionFAB";
+import ExtensionFAB, {ExtensionFAB2} from "./ExtensionFAB";
 import ReactDOM from "react-dom";
 
 function init(): void {
@@ -13,6 +13,7 @@ function init(): void {
             (target.tagName.toLowerCase() === 'input' && (target as HTMLInputElement).type === 'text') ||
             target.tagName.toLowerCase() === 'textarea'
           ) {
+        textfileInput("test keywords");
         if (appContainer) {
             ReactDOM.unmountComponentAtNode(appContainer);
             appContainer.remove();
@@ -39,9 +40,54 @@ function init(): void {
         appContainer = null;
     }
       });
-
-    
     
 }
 
+
+function textfieldRender() {
+    // Find all text input fields and textareas on the page
+    const textFields = document.querySelectorAll(
+      'input, textarea'
+    ) as NodeListOf<HTMLElement>;
+  
+    textFields.forEach((textField) => {
+      // Get the bounding rectangle of the text field
+      const rect = textField.getBoundingClientRect();
+  
+      // Create a container div at the bottom-left corner of the text field
+      const container = document.createElement('div');
+      container.style.position = 'absolute';
+      container.style.left = `${window.scrollX + rect.left}px`;
+      container.style.top = `${window.scrollY + rect.bottom}px`;
+      document.body.appendChild(container);
+  
+      // Render your React component inside the container
+      document.body.appendChild(container);
+      const shadowRoot = container.attachShadow({ mode: 'open' });
+      console.log(container);
+      const root = createRoot(shadowRoot)
+      root.render(<ExtensionFAB2/>);
+    });
+  }
+  
+  function textfileInput(textToInput) {
+    console.log("input start");
+    // Find all text input fields and textareas on the page
+    const textFields = document.querySelectorAll(
+      'input, textarea'
+    );
+  
+    textFields.forEach((textField: HTMLInputElement | HTMLTextAreaElement) => {
+      // Input the specified text into the text field
+      textField.value = textToInput;
+  
+      // Dispatch an input event to notify any listeners that the value has changed
+      const event = new Event('input', { 'bubbles': true, 'cancelable': true });
+      textField.dispatchEvent(event);
+    });
+  }
+  
+
+textfieldRender();
+textfileInput("test");
 init();
