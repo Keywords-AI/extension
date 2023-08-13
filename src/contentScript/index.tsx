@@ -1,7 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import '../assets/tailwind.css'
-import ExtensionFAB, {ExtensionFAB2} from "./ExtensionFAB";
+// import '../assets/tailwind.css'
+import ExtensionFAB, {AskAI, ExtensionFAB2} from "./ExtensionFAB";
+import { sendMessage } from "./message";
 import ReactDOM from "react-dom";
 
 function init(): void {
@@ -13,7 +14,17 @@ function init(): void {
             (target.tagName.toLowerCase() === 'input' && (target as HTMLInputElement).type === 'text') ||
             target.tagName.toLowerCase() === 'textarea'
           ) {
-        textfileInput("test keywords");
+        const inputId = (target as HTMLInputElement).id;
+        if (inputId) {
+          const label = document.querySelector(`label[for="${inputId}"]`);
+          if (label) {
+            console.log('Label content:', label.textContent);
+            sendMessage({"message" : "Can you generate a paragraph about " + label.textContent +"? Please send the content directly and no other things."});
+          } else {
+             console.log('Label not found');
+             console.log('input id: ', inputId);
+          }
+        }
         if (appContainer) {
             ReactDOM.unmountComponentAtNode(appContainer);
             appContainer.remove();
@@ -27,17 +38,17 @@ function init(): void {
             throw new Error("Can not find AppContainer");
         }
         appContainer.style.position = 'absolute';
-        appContainer.style.left = `${window.scrollX + rect.right}px`;
-        appContainer.style.top = `${window.scrollY + rect.bottom}px`;
+        appContainer.style.left = `${window.scrollX + rect.right + 4}px`;
+        appContainer.style.top = `${window.scrollY + rect.bottom - 4}px`;
         document.body.appendChild(appContainer);
         const shadowRoot = appContainer.attachShadow({ mode: 'open' });
         console.log(appContainer);
         const root = createRoot(shadowRoot)
-        root.render(<ExtensionFAB/>);
+        root.render(<AskAI/>);
     } else if (appContainer) {
-        ReactDOM.unmountComponentAtNode(appContainer);
-        appContainer.remove();
-        appContainer = null;
+        // ReactDOM.unmountComponentAtNode(appContainer);
+        // appContainer.remove();
+        // appContainer = null;
     }
       });
     
@@ -71,6 +82,7 @@ function textfieldRender() {
   }
   
   function textfileInput(textToInput) {
+    sendMessage({ "message": "can you create a self introduction for me?"});
     console.log("input start");
     // Find all text input fields and textareas on the page
     const textFields = document.querySelectorAll(
@@ -86,8 +98,9 @@ function textfieldRender() {
       textField.dispatchEvent(event);
     });
   }
+
   
 
-textfieldRender();
-textfileInput("test");
+// textfieldRender();
+// textfileInput("test");
 init();
