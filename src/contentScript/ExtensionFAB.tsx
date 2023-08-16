@@ -27,7 +27,7 @@ export function AskAI() {
       gap: 'var(--space-xs, 4px)',
       borderRadius: 'var(--space-xl, 64px)',
       background: 'var(--color-blue-blue-500, #0697E0)',
-  }
+  };
   const askText = {
     color: 'white',
   }
@@ -37,3 +37,26 @@ export function AskAI() {
     </div>
   );
 }
+
+export function generating() {
+  const generate = {
+      height : '30px',
+      width: '60px',
+      display: 'inline-flex',
+      padding: 'var(--space-s, 4px) var(--space-m, 4px)',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 'var(--space-xs, 4px)',
+      borderRadius: 'var(--space-xl, 64px)',
+      background: 'var(--color-blue-blue-500, #0697E0)',
+  };
+  const genText = {
+    color: 'white',
+  }
+  return (
+    <div style={generate} onClick={() => console.log("generating")}>
+      <p style={genText}>Generating</p>
+    </div>
+  );
+}
+

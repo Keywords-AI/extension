@@ -19,7 +19,7 @@ function init(): void {
           const label = document.querySelector(`label[for="${inputId}"]`);
           if (label) {
             console.log('Label content:', label.textContent);
-            sendMessage({"message" : "Can you generate a paragraph about " + label.textContent +"? Please send the content directly and no other things."});
+            sendMessage({"message" : "Can you generate a paragraph about apple" + label.textContent +"? Please send the content directly and no other things."});
           } else {
              console.log('Label not found');
              console.log('input id: ', inputId);
@@ -82,7 +82,7 @@ function textfieldRender() {
   }
   
   function textfileInput(textToInput) {
-    sendMessage({ "message": "can you create a self introduction for me?"});
+    sendMessage({ "message": "I am currently an engineer student at college. Can you create a self introduction for me?"});
     console.log("input start");
     // Find all text input fields and textareas on the page
     const textFields = document.querySelectorAll(
